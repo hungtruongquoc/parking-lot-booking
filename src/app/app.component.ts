@@ -2,7 +2,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SeoService} from '@core/services';
 import {ActivatedRoute} from '@angular/router';
-import {faHome, faSignOut} from '@fortawesome/pro-light-svg-icons';
+import {faHome, faSignOut, faCalendarAlt} from '@fortawesome/pro-light-svg-icons';
+import {faHome as faSolidHome, faCalendarAlt as faSolidCalendarAlt} from '@fortawesome/pro-solid-svg-icons';
 
 // @ts-ignore
 @Component({
@@ -13,6 +14,10 @@ import {faHome, faSignOut} from '@fortawesome/pro-light-svg-icons';
 export class AppComponent implements OnInit {
   public faHome = faHome;
   public faSignOut = faSignOut;
+  public iconReservation = faCalendarAlt;
+  public iconActiveHome = faSolidHome;
+  public iconActiveReservation = faSolidCalendarAlt;
+
   public links: object[] = [
     {title: 'One', fragment: 'one'},
     {title: 'Two', fragment: 'two'}
