@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1fdbf6ad8543daa807e855917903d9e005647a62" datatype="html">
+        <source>Hi.</source>
+        <target>Hola.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/home/home.page.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2fb669c2d4cde5b14c21b0bb0458211957ea6d24" datatype="html">
+        <source>
+          You are in the home page and this is a really basic test for the i18n feature.
+        </source>
+        <target>
+          Te encuentras en la página de inicio y esto es una prueba realmente básica para la característica i18n.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/home/home.page.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
