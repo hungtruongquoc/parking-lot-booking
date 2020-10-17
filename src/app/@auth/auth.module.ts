@@ -13,6 +13,7 @@ import { PasswordResetSucceededPage } from './pages/password-reset-succeeded/pas
 import { PasswordResetPage } from './pages/password-reset/password-reset.page';
 import { SignUpPage } from './pages/sign-up/sign-up.page';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     LoginPage,
