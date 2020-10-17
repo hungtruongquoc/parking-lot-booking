@@ -1,0 +1,56 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Sample feature",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, est!",
+      "author": "John Doe",
+      "date": "Sun Jun 07 2020 01:43:34 GMT-0500 (Colombia Standard Time)"
+    },
+    {
+      "id": 2,
+      "title": "Sample feature",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, est!",
+      "author": "John Doe",
+      "date": "Sun Jun 07 2020 01:43:34 GMT-0500 (Colombia Standard Time)"
+    },
+    {
+      "id": 3,
+      "title": "Sample feature",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, est!",
+      "author": "John Doe",
+      "date": "Sun Jun 07 2020 01:43:34 GMT-0500 (Colombia Standard Time)"
+    },
+    {
+      "id": 4,
+      "title": "Sample feature",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, est!",
+      "author": "John Doe",
+      "date": "Sun Jun 07 2020 01:43:34 GMT-0500 (Colombia Standard Time)"
+    },
+    {
+      "id": 5,
+      "title": "A la primera papá",
+      "description": "hoaslfkjsdfldsajfladsjflsdkfjldskfjdslkfjsdlkfjdaslfkjasflkjasdflkjasdflksjdf",
+      "author": "Carlitos",
+      "date": "2020-06-07T08:29:22.725Z"
+    },
+    {
+      "id": 6,
+      "title": "Vamo a crear otro",
+      "description": "asdkljfsdlfjdslfkjdaslfkjds\nasjdflkdsjf\nsdjlfkdsjflsdajfñadslkfjdasklfjdaslkfjadslkfj asdf\nsdfjdslfkjadsflkadsjfldsk fjadslfkjsd ñfldasjflkadsjf\nsdafjdskfldsjfkkdsflkdjdfñadsfñjdasfkjadsfads\nfadsjfkadsjfkdslfjldskfjad",
+      "author": "Juan",
+      "date": "2020-06-07T08:32:40.436Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

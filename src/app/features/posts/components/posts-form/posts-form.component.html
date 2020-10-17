@@ -1,0 +1,54 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      formControlName="title"
+      type="text"
+      class="form-control {{ submitted && f.title.errors ? 'is-invalid' : '' }}"
+      id="title"
+      placeholder="Enter a title"
+      required
+    />
+    <div *ngIf="f.title.errors" class="invalid-feedback">
+      <p *ngIf="submitted && f.title.errors.required">The field is required</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="author">Author</label>
+    <input
+      formControlName="author"
+      type="text"
+      class="form-control {{
+        submitted && f.author.errors ? 'is-invalid' : ''
+      }}"
+      id="author"
+      placeholder="Enter the author"
+    />
+    <div *ngIf="f.author.errors" class="invalid-feedback">
+      <p *ngIf="submitted && f.author.errors.required">The field is required</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      formControlName="description"
+      class="form-control {{
+        submitted && f.description.errors ? 'is-invalid' : ''
+      }}"
+      id="description"
+      placeholder="Enter a description"
+      rows="5"
+    ></textarea>
+    <div *ngIf="f.description.errors" class="invalid-feedback">
+      <p *ngIf="submitted && f.description.errors.required">
+        The field is required
+      </p>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success">
+    Save
+  </button>
+</form>

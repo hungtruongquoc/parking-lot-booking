@@ -1,0 +1,41 @@
+<style>
+  @import url(https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/sketchy/bootstrap.min.css);
+</style>
+
+<div class="container">
+  <div class="row mb-4">
+    <h1>Created posts</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-dismissible alert-info">
+        <button type="button" class="close" data-dismiss="alert">
+          &times;
+        </button>
+        <strong>Heads up!</strong> You can create a new post, edit, and delete
+        the existing ones.
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 text-center mt-4">
+      <a routerLink="create" class="btn btn-primary">Create a new Post</a>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 mt-5 text-center">
+      <app-posts-list
+        *ngIf="posts && posts.length > 0"
+        [posts]="posts"
+        (delete)="onDeletePost($event)"
+      ></app-posts-list>
+
+      <p *ngIf="!posts || posts.length === 0" class="display-4 mt-5">
+        No posts found 😞
+      </p>
+    </div>
+  </div>
+</div>

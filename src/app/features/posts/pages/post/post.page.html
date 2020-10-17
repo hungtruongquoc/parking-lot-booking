@@ -1,0 +1,25 @@
+<style>
+  @import url(https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/sketchy/bootstrap.min.css);
+</style>
+
+<div class="container">
+  <div class="row mb-4">
+    <h1>Create or update a post</h1>
+  </div>
+
+  <div class="row mb-5">
+    <a routerLink="/posts" class="btn btn-secondary">
+      [-- Go back to posts
+    </a>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+      <app-posts-form
+        [post]="post"
+        (save)="onSave($event)"
+        (edit)="onEdit($event)"
+      ></app-posts-form>
+    </div>
+  </div>
+</div>
