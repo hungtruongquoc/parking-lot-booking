@@ -1,29 +1,38 @@
 <app-navbar>
   <div class="mobile d-flex flex-row justify-content-between">
-    <h4><a routerLink="/">
-      <fa-icon [icon]="faHome"></fa-icon>
-    </a></h4>
-    <h4>
-      E2Parking
+    <h4 class="branding">
+      <span>E</span>2Parking
     </h4>
-    <h4>
-      <a routerLink="/logout"><fa-icon [icon]="faSignOut"></fa-icon></a>
-    </h4>
+    <h5>
+      <a routerLink="/logout">
+        <fa-icon [icon]="faSignOut"></fa-icon>
+      </a>
+    </h5>
   </div>
   <div class="desktop d-flex flex-row justify-content-between">
-    <h3><a routerLink="/">E2Parking</a></h3>
-    <h5 class="pt-2"><a routerLink="/reservation">Reservation</a> </h5>
-    <h5 class="pt-2"><a routerLink="/logout">Log Out</a> </h5>
+    <h3 class="branding"><a routerLink="/"><span>E</span>2Parking</a></h3>
+    <h5 class="pt-2"><a routerLink="/reservation">Reservation</a></h5>
+    <h5 class="pt-2"><a routerLink="/logout">Log Out</a></h5>
   </div>
 </app-navbar>
-<router-outlet></router-outlet>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
 <app-footer>
-  <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs mobile">
-    <li [ngbNavItem]="link.fragment" *ngFor="let link of links">
-      <a ngbNavLink routerLink="." [fragment]="link.fragment">{{ link.title }}</a>
-    </li>
-  </ul>
+  <div class="mobile d-flex flex-row justify-content-around">
+    <h4>
+      <a routerLink="/reservation/index" routerLinkActive="active" class="bottom-nav-item" #rla="routerLinkActive"
+         [routerLinkActiveOptions]="{exact:true}">
+        <fa-icon [icon]="rla.isActive ? iconActiveHome : faHome"></fa-icon>
+      </a>
+    </h4>
+    <h4>
+      <a routerLink="/reservation/list" routerLinkActive="active" class="bottom-nav-item" #rlaList="routerLinkActive">
+        <fa-icon [icon]="rlaList.isActive ? iconActiveReservation : iconReservation"></fa-icon>
+      </a>
+    </h4>
+  </div>
   <div class="desktop">
-    <h6>Copyright 2020 - Hung Truong</h6>
+    <h5>Copyright 2020 - Hung Truong</h5>
   </div>
 </app-footer>

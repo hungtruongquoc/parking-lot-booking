@@ -2,7 +2,11 @@
 
 .nav-container {
   color: $orange-500;
+  background-color: $white;
   h6 {
     color: $orange-500;
+  }
+  .active {
+    color: $active;
   }
 }

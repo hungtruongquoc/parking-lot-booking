@@ -7,7 +7,7 @@ import { AuthGuard, NoAuthGuard } from './@core/guards';
 
 const routes: Routes = [
   // ===== Uncomment if pathMap.Home is different from empty =====
-  { path: '', redirectTo: PathMap.Reservation, pathMatch: 'full' },
+  { path: '', redirectTo: PathMap.Reservation + '/index', pathMatch: 'full' },
 
   // Home page
   {

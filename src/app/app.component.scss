@@ -1,0 +1,34 @@
+@import '../assets/css/01-settings/variables';
+
+.main-content {
+  height: 88vh;
+}
+
+h4 {
+  &.branding {
+    & > span {
+      color: $active;
+    }
+  }
+}
+
+h3 {
+  &.branding {
+    span {
+      color: $active;
+    }
+  }
+}
+
+a {
+  &.bottom-nav-item {
+    &.active {
+      color: $active;
+      &:hover {
+        color: $active;
+      }
+    }
+  }
+}
+
+
