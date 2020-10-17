@@ -1,1 +1,8 @@
-<p>footer works!</p>
+<div class="nav-container">
+  <div class="d-block d-sm-none container-fluid">
+    <ng-content select=".mobile"></ng-content>
+  </div>
+  <div class="d-none d-sm-block container">
+    <ng-content select=".desktop"></ng-content>
+  </div>
+</div>

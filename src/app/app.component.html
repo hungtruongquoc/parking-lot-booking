@@ -1,14 +1,29 @@
 <app-navbar>
+  <div class="mobile d-flex flex-row justify-content-between">
+    <h4><a routerLink="/">
+      <fa-icon [icon]="faHome"></fa-icon>
+    </a></h4>
+    <h4>
+      E2Parking
+    </h4>
+    <h4>
+      <a routerLink="/logout"><fa-icon [icon]="faSignOut"></fa-icon></a>
+    </h4>
+  </div>
+  <div class="desktop d-flex flex-row justify-content-between">
+    <h3><a routerLink="/">E2Parking</a></h3>
+    <h5 class="pt-2"><a routerLink="/reservation">Reservation</a> </h5>
+    <h5 class="pt-2"><a routerLink="/logout">Log Out</a> </h5>
+  </div>
+</app-navbar>
+<router-outlet></router-outlet>
+<app-footer>
   <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs mobile">
     <li [ngbNavItem]="link.fragment" *ngFor="let link of links">
       <a ngbNavLink routerLink="." [fragment]="link.fragment">{{ link.title }}</a>
     </li>
   </ul>
-  <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs desktop">
-    <li [ngbNavItem]="link.fragment" *ngFor="let link of links">
-      <a ngbNavLink routerLink="." [fragment]="link.fragment">{{ link.title }}-desktop</a>
-    </li>
-  </ul>
-</app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+  <div class="desktop">
+    <h6>Copyright 2020 - Hung Truong</h6>
+  </div>
+</app-footer>
