@@ -10,4 +10,5 @@ export enum PathMap {
   PasswordResetSucceeded = 'password-reset-succeeded',
   PasswordResetFailed = 'password-reset-failed',
   Home = '',
+  Reservation = 'reservation'
 }

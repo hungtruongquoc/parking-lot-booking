@@ -1,11 +1,13 @@
+// @ts-ignore
 import { NgModule } from '@angular/core';
+// @ts-ignore
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PathMap } from './@core/enums/path-map.enum';
 import { AuthGuard, NoAuthGuard } from './@core/guards';
 
 const routes: Routes = [
   // ===== Uncomment if pathMap.Home is different from empty =====
-  // { path: '', redirectTo: PathMap.Home, pathMatch: 'full' },
+  { path: '', redirectTo: PathMap.Reservation, pathMatch: 'full' },
 
   // Home page
   {
@@ -13,6 +15,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('@features/home/home.module').then((m) => m.HomeModule),
+  },
+
+  // Reservation
+  {
+    path: PathMap.Reservation,
+    loadChildren: () =>
+      import('@features/reservation/reservation.module').then((m) => m.ReservationModule),
   },
 
   // Auth
@@ -40,6 +49,7 @@ const routes: Routes = [
   },
 ];
 
+// @ts-ignore
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),

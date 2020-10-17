@@ -1,4 +1,6 @@
+// @ts-ignore
 import { NgModule } from '@angular/core';
+// @ts-ignore
 import { RouterModule, Routes } from '@angular/router';
 import { PathMap } from '@app/@core/enums';
 import { ForgotPasswordEmailSentPage } from './pages/forgot-password-email-sent/forgot-password-email-sent.page';
@@ -40,6 +42,7 @@ const routes: Routes = [
   },
 ];
 
+// @ts-ignore
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

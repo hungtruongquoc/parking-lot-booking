@@ -1,4 +1,6 @@
+// @ts-ignore
 import { Injectable } from '@angular/core';
+// @ts-ignore
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -7,8 +9,10 @@ import {
   UrlTree,
 } from '@angular/router';
 import { AuthService } from '@app/@auth';
+// @ts-ignore
 import { Observable } from 'rxjs';
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root',
 })
