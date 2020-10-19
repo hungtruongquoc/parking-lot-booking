@@ -2,21 +2,9 @@
 
 .main-content {
   height: 88vh;
-}
-
-h4 {
-  &.branding {
-    & > span {
-      color: $active;
-    }
-  }
-}
-
-h3 {
-  &.branding {
-    span {
-      color: $active;
-    }
+  color: $black;
+  h3 {
+    color: $black;
   }
 }
 

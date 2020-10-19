@@ -1,0 +1,16 @@
+<form nz-form [formGroup]="vehicleForm" [nzLayout]="'inline'" (ngSubmit)="onFormSubmit()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="License plate needed">
+      <input nz-input name="license-plate" type="text" id="license-plate" formControlName="licensePlate"
+             placeholder="Provide your license plate">
+    </nz-form-control>
+  </nz-form-item>
+  <div class="form-action">
+    <button nz-button nzType="default" nzShape="circle" class="flex-grow-1" (click)="emitCancelClicked()">
+      <fa-icon [icon]="iconCancel"></fa-icon>
+    </button>
+    <button nz-button nzType="primary" nzShape="circle" class="flex-grow-1">
+      <fa-icon [icon]="iconSubmit"></fa-icon>
+    </button>
+  </div>
+</form>
