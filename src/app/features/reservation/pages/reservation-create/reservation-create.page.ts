@@ -15,7 +15,7 @@ import {VehicleEditComponent, VehicleShowComponent} from '../../components';
 import {EditFieldDirective} from '../../directives';
 import {Subscription} from 'rxjs';
 import {Vehicle} from '../../../../@core/interfaces';
-import {getStatusTextColor} from '../../../../@core/helpers';
+import {getStatusTextColor, isCheckInDateValid} from '../../../../@core/helpers';
 import {DateTimeEditComponent, DateTimeShowComponent} from '../../../../@ui';
 
 @Component({
@@ -119,6 +119,10 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     });
   }
 
+  private isValidCheckInDate(value: Date): boolean {
+    return isCheckInDateValid(value);
+  }
+
   private updateDateTimeInfo(fieldName: string, data: Date): void {
     this.formSteps = this.formSteps.map(item => {
       const newItem = {...item};
@@ -159,8 +163,13 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
       }
       else if (['checkInDate', 'checkOutDate'].includes(fieldName)) {
         this.vehicleFormSubscriptions.push(componentRef.instance.submitClicked.subscribe((data: Date) => {
-          this.updateDateTimeInfo(fieldName, data);
-          this.toggleEditStatus(fieldName);
+          if ('checkInDate' === fieldName && !this.isValidCheckInDate(data)) {
+            return;
+          }
+          else {
+            this.updateDateTimeInfo(fieldName, data);
+            this.toggleEditStatus(fieldName);
+          }
         }));
       }
       else {
@@ -192,6 +201,16 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     });
   }
 
+  public deleteDateInfo(fieldName: string): void {
+    this.formSteps = this.formSteps.map(item => {
+      const newItem = {...item};
+      if (fieldName === item.field) {
+        newItem.value = null;
+      }
+      return newItem;
+    });
+  }
+
   public onEditButtonClick(event, step: FormStep) {
     this.toggleEditStatus(step.field);
   }
@@ -203,6 +222,13 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   public isValidStep(step: FormStep): boolean {
     if ('vehicle' === step.field) {
       return step.value && step.value.licensePlate;
+    }
+    if (['checkInDate', 'checkOutDate'].includes(step.field)) {
+      try {
+        return step.value && !isNaN(parseInt(step.value, 10));
+      } catch (exception) {
+        return false;
+      }
     }
     return false;
   }

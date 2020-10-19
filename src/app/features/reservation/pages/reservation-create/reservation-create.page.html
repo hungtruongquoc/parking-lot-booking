@@ -28,12 +28,21 @@
             </button>
           </div>
         </vehicle-show>
-        <date-time-show *ngIf="['checkInDate', 'checkOutDate'].includes(step.field)">
+        <date-time-show *ngIf="['checkInDate', 'checkOutDate'].includes(step.field)" [value]="step.value">
           <button nz-button nzShape="circle" class="show-calendar" nzType="primary"
                   (click)="onEditButtonClick($event, step)"
                   [disabled]="!isPreviousStepValid(step.previousStep) || hasEditFieldActive">
             <fa-icon [icon]="iconCalendar"></fa-icon>
           </button>
+          <div class="action-buttons check-in-info">
+            <button nz-button nzType="default" nzShape="circle" class="add-new" [disabled]="hasEditFieldActive"
+                    (click)="onEditButtonClick($event, step)">
+              <fa-icon [icon]="iconEdit"></fa-icon>
+            </button>
+            <button nz-button nzType="danger" nzShape="circle" class="add-new" (click)="deleteDateInfo(step.field)">
+              <fa-icon [icon]="iconDelete"></fa-icon>
+            </button>
+          </div>
         </date-time-show>
       </div>
 <!--      Anchor directive for dynamic input component-->

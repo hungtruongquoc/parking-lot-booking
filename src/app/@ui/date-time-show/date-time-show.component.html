@@ -1,2 +1,7 @@
-<span *ngIf="value">{{value}}</span>
-<span *ngIf="!value">Please select <ng-content select="button.show-calendar"></ng-content> date and time</span>
+<div class="date-time-info-container d-flex flex-row">
+  <div class="date-time-info flex-grow-1">
+    <span *ngIf="value">{{value | toLocaleTime}}</span>
+    <span *ngIf="!value">Please select <ng-content select="button.show-calendar"></ng-content> date and time</span>
+  </div>
+  <ng-content select=".action-buttons" *ngIf="value"></ng-content>
+</div>

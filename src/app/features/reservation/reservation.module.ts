@@ -18,6 +18,7 @@ import {NzFormModule} from 'ng-zorro-antd/form';
 import {DateTimeEditComponent, DateTimeShowComponent} from '@app/@ui';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 import {NzTimePickerModule} from 'ng-zorro-antd/time-picker';
+import {CoreModule} from '../../@core/core.module';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {NzTimePickerModule} from 'ng-zorro-antd/time-picker';
     NzFormModule,
     NzDatePickerModule,
     NzTimePickerModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ]
 })
 export class ReservationModule {
