@@ -14,10 +14,12 @@ import {AppComponent} from './app.component';
 // @ts-ignore
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {BrandingComponent} from '@ui/branding/branding.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // @ts-ignore
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, BrandingComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -28,7 +30,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
       enabled: environment.production,
     }),
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

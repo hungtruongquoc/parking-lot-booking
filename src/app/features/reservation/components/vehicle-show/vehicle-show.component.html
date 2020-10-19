@@ -1,0 +1,13 @@
+<div *ngIf="!value else showVehicle">
+  No vehicle found. Add <ng-content select="button.add-new"></ng-content> a vehicle.
+</div>
+<ng-template #showVehicle>
+  <div class="d-flex flex-row vehicle-container">
+    <div class="vehicle-info flex-grow-1">
+      <span>{{value.licensePlate | uppercase}}</span><span>{{value.size}}</span>
+    </div>
+    <div class="vehicle-actions">
+      <ng-content select="div.actions"></ng-content>
+    </div>
+  </div>
+</ng-template>
