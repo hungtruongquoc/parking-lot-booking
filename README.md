@@ -34,3 +34,7 @@ This is a clean, intuitive, and fast starter project which contains a robust, ma
 ```
 
 ## Quickstart
+
+## Preferences
+
+[On Change Library for detect change on an object](https://github.com/sindresorhus/on-change)

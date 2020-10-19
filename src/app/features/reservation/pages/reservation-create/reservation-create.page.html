@@ -1,8 +1,11 @@
 <div class="create-form-container container">
   <div class="content-mobile">
     <h4 class="page-title">New Reservation</h4>
+    <div *ngIf="errorMessage" class="error-message alert alert-danger" role="alert">
+      <fa-icon [icon]="iconError"></fa-icon> {{errorMessage}}
+    </div>
 <!--    Generates the list of fields and input components-->
-    <div class="d-flex flex-column section-container" *ngFor="let step of formSteps">
+    <div class="d-flex flex-column section-container" *ngFor="let step of FormConfig">
 <!--      Generates labels-->
       <div class="d-flex flex-row justify-content-between">
         <h5 class="section-icon flex-grow-0" [ngClass]="getStatusTextClass(step)">
@@ -50,7 +53,9 @@
       </ng-template>
     </div>
     <div class="next-button">
-      <button nzBlock nz-button nzType="primary" nzShape="round" disabled>Select a parking spot</button>
+      <button nzBlock nz-button nzType="primary" nzShape="round" [disabled]="!reservationObj.isValid">
+        Select a parking spot
+      </button>
     </div>
   </div>
 </div>
