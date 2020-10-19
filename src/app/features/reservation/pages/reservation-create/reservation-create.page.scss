@@ -28,6 +28,14 @@ div {
   }
 
   &.vehicle-info.actions {
+    text-align: right;
+    button {
+      margin-left: 1em;
+    }
+  }
+
+  &.check-in-info.action-buttons {
+    text-align: right;
     button {
       margin-left: 1em;
     }
