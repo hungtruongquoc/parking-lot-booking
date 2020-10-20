@@ -106,7 +106,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     this.subscriptions.push(this.$newReservation.subscribe(data => {
       if (data) {
         this.FormConfig = this.FormConfig.map(item => {
-          if ('vehicle' === item.field) {
+          if ('vehicle' === item.field && data.vehicle) {
             item.value = {...data.vehicle};
           }
           if ('checkInDate' === item.field) {
@@ -329,7 +329,6 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   public getStatusTextClass(step) {
-    console.log(getStatusTextColor(this.isValidStep(step)));
     return getStatusTextColor(this.isValidStep(step));
   }
 

@@ -1,10 +1,11 @@
 <div class="container">
   <div class="step-navigation">
     <a routerLink="/reservation/create" class="btn btn-sm" tabindex="-1" role="button" aria-disabled="true">
-      <fa-icon [icon]="iconBack" ></fa-icon> Vehicle Info
+      <fa-icon [icon]="iconBack"></fa-icon>
+      Vehicle Info
     </a>
   </div>
-  <div class="spot-list-section" *ngIf="!newReservation || !newReservation.spotId else showSpot">
+  <div class="spot-list-section" *ngIf="!newReservation || !newReservation.spotId || showEdit else showSpot">
     <h5>Select a Parking Spot</h5>
     <div class="list-container desktop d-none d-md-block" style="height: 500px; overflow-y: auto">
       <spot-list [spotSource]="$spots | async" [title]="null" (itemClicked)="updateSelectedSpot($event)"></spot-list>
@@ -14,7 +15,17 @@
     </div>
   </div>
   <ng-template #showSpot>
-    <h5>Spot {{newReservation.spotId}} was selected</h5>
-    for vehicle <h5 class="text-uppercase d-inline">{{newReservation.vehicle.licensePlate}}</h5>
+    <h5>Spot {{newReservation.spotId}}
+      <button nz-button nzShape="circle" (click)="showEdit = true">
+        <fa-icon [icon]="iconEdit"></fa-icon>
+      </button>
+      was selected for vehicle
+      <span class="text-uppercase d-inline">{{newReservation.vehicle.licensePlate}}</span></h5>
+    <button nz-button nzShape="round" (click)="showReviewPage()" nzType="primary" nzBlock class="d-md-none">Review
+      Reservation
+    </button>
+    <button nz-button nzShape="round" (click)="showReviewPage()" nzType="primary" class="d-none d-md-block">Review
+      Reservation
+    </button>
   </ng-template>
 </div>

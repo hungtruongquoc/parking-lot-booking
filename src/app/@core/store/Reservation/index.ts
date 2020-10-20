@@ -41,7 +41,6 @@ export const reservationReducer = createReducer(initialState,
     return {...state, newReservation: {...reservation}};
   }),
   on(updateNewReservationSpotAction, (state, spot) => {
-    debugger;
     return {...state, newReservation: {...state.newReservation, spotId: spot.spotId, rate: spot.rate}};
   })
 );

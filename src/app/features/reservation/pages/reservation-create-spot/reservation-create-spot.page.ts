@@ -9,7 +9,7 @@ import {Reservation, selectNewReservation, State, updateNewReservationSpotAction
 import {Spot, selectSpotList, getSpotList, getAvailableSpot} from '../../../../@core/store/Spot';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
-import {faArrowLeft} from '@fortawesome/pro-light-svg-icons';
+import {faArrowLeft, faPen} from '@fortawesome/pro-light-svg-icons';
 
 @Component({
   templateUrl: './reservation-create-spot.page.html',
@@ -22,7 +22,8 @@ export class ReservationCreateSpotPage implements OnInit, OnDestroy {
   public selectedSpot: number = null;
   public newReservation: any = null;
   public subscriptions: Subscription[] = [];
-
+  public iconEdit = faPen;
+  public showEdit = false;
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private store: Store<State>,
               private router: Router) {
   }
@@ -41,7 +42,7 @@ export class ReservationCreateSpotPage implements OnInit, OnDestroy {
   public updateSelectedSpot(data: Spot) {
     if (data) {
       this.store.dispatch(updateNewReservationSpotAction(data));
-      debugger;
+      this.showEdit = false;
     }
   }
 
@@ -53,5 +54,9 @@ export class ReservationCreateSpotPage implements OnInit, OnDestroy {
         currentSub = this.subscriptions.pop();
       } while (currentSub);
     }
+  }
+
+  public showReviewPage() {
+    this.router.navigateByUrl('/reservation/create-review');
   }
 }
