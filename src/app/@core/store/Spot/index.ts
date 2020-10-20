@@ -3,6 +3,7 @@ import * as faker from 'faker';
 
 export const GET_SPOT_LIST = '[Spot Feature] Get A List of Spots';
 export const UPDATE_SPOT_LIST = '[Spot Feature] Update Spot List';
+export const GET_AVAILABLE_SPOTS = '[Spot Feature] Get A List of Available Spots';
 
 export interface Spot {
   spotId?: number;
@@ -19,6 +20,7 @@ export const initialSpotState: SpotState = {
 };
 
 export const getSpotList = createAction(GET_SPOT_LIST);
+export const getAvailableSpot = createAction(GET_AVAILABLE_SPOTS);
 export const updateSpotList = createAction(UPDATE_SPOT_LIST, props<{payload: any}>());
 
 export const selectSpotList = (state: any) => {

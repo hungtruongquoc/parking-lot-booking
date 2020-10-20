@@ -3,62 +3,122 @@
     {
       "rate": 10.00,
       "id": 100,
-      "available": false
+      "available": 0
     },
     {
       "rate": 15.00,
       "id": 101,
-      "available": true
+      "available": 1
     },
     {
       "rate": 10.00,
       "id": 102,
-      "available": false
+      "available": 0
     },
     {
       "rate": 15.00,
       "id": 103,
-      "available": true
+      "available": 1
     },
     {
       "rate": 10.00,
       "id": 104,
-      "available": false
+      "available": 0
     },
     {
       "rate": 15.00,
       "id": 105,
-      "available": true
+      "available": 1
     },
     {
       "rate": 10.00,
       "id": 106,
-      "available": false
+      "available": 0
     },
     {
       "rate": 15.00,
       "id": 107,
-      "available": true
+      "available": 1
     },
     {
       "rate": 10.00,
       "id": 108,
-      "available": false
+      "available": 0
     },
     {
       "rate": 15.00,
       "id": 109,
-      "available": true
+      "available": 1
     },
     {
       "rate": 10.00,
       "id": 110,
-      "available": false
+      "available": 0
     },
     {
       "rate": 15.00,
       "id": 111,
-      "available": true
+      "available": 1
+    },
+    {
+      "rate": 10.00,
+      "id": 112,
+      "available": 0
+    },
+    {
+      "rate": 15.00,
+      "id": 113,
+      "available": 1
+    },
+    {
+      "rate": 10.00,
+      "id": 114,
+      "available": 0
+    },
+    {
+      "rate": 15.00,
+      "id": 115,
+      "available": 1
+    },
+    {
+      "rate": 10.00,
+      "id": 201,
+      "available": 0
+    },
+    {
+      "rate": 15.00,
+      "id": 202,
+      "available": 1
+    },
+    {
+      "rate": 10.00,
+      "id": 203,
+      "available": 0
+    },
+    {
+      "rate": 15.00,
+      "id": 204,
+      "available": 1
+    },
+    {
+      "rate": 10.00,
+      "id": 205,
+      "available": 0
+    },
+    {
+      "rate": 15.00,
+      "id": 206,
+      "available": 1
+    },
+    {
+      "rate": 10.00,
+      "id": 207,
+      "available": 0
+    },
+    {
+      "rate": 15.00,
+      "id": 208,
+      "available": 1
     }
   ]
 }

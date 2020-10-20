@@ -55,7 +55,11 @@
     </div>
     <div class="next-button">
       <button nzBlock nz-button nzType="primary" nzShape="round" [disabled]="!reservationObj.isValid"
-              (click)="updateNewReservation()" *ngIf="!showSpots">
+              (click)="updateNewReservation()" *ngIf="!showSpots" class="d-md-none">
+        Select a parking spot
+      </button>
+      <button nz-button nzType="primary" nzShape="round" [disabled]="!reservationObj.isValid"
+              (click)="updateNewReservation()" *ngIf="!showSpots" class="d-none d-md-block">
         Select a parking spot
       </button>
     </div>

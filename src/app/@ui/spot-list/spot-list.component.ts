@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Spot} from '@core/store/Spot';
 
 @Component({
@@ -12,11 +12,17 @@ export class SpotListComponent implements OnInit {
   public spotSource: Spot[] = null;
 
   @Input()
-  public title = 'List of Spots';
+  public title = null;
+
+  @Output()
+  public itemClicked: EventEmitter<Spot> = new EventEmitter<Spot>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  public emitItemClicked(event, spot: Spot) {
+    this.itemClicked.emit(spot);
+  }
 }

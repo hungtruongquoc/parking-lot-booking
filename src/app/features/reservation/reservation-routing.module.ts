@@ -5,6 +5,8 @@ import {ReservationCreatePage} from './pages/reservation-create/reservation-crea
 import {ReservationIndexPage} from './pages/reservation-index/reservation-index.page';
 import {ReservationCtaPage} from './pages/reservation-cta/reservation-cta.page';
 import {ReservationCreateSpotPage} from './pages/reservation-create-spot/reservation-create-spot.page';
+import {CreateReservationGuardGuard} from '../../@core/guards/create-reservation-guard.guard';
+import {ReservationCreateReviewPage} from './pages/reservation-create-review/reservation-create-review.page';
 
 const routes: Routes = [
   {
@@ -37,9 +39,20 @@ const routes: Routes = [
       {
         path: 'create-spot',
         component: ReservationCreateSpotPage,
+        canActivate: [CreateReservationGuardGuard],
         data: {
           title: 'Spot For New Reservation',
           description: 'Add a spot to a new reservation',
+          robots: 'follow',
+        }
+      },
+      {
+        path: 'create-review-pay',
+        component: ReservationCreateReviewPage,
+        canActivate: [CreateReservationGuardGuard],
+        data: {
+          title: 'Pay For New Reservation',
+          description: 'Payment for the new a new reservation',
           robots: 'follow',
         }
       },
