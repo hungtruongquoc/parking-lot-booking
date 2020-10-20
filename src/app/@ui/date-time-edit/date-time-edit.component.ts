@@ -35,13 +35,8 @@ export class DateTimeEditComponent implements OnInit {
     this.cancelClicked.emit();
   }
 
-  public onChange(result: Date): void {
-    console.log('onChange: ', result);
-  }
+  public onChange(result: Date): void {}
 
-  public onTimeChanged(result: Date): void {
-    console.log('on time changed: ', result);
-  }
 
   public submitForm() {
     const {date, time} = this.dateTimeForm.value;

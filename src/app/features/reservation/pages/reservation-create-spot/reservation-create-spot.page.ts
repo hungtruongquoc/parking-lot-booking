@@ -57,6 +57,6 @@ export class ReservationCreateSpotPage implements OnInit, OnDestroy {
   }
 
   public showReviewPage() {
-    this.router.navigateByUrl('/reservation/create-review');
+    this.router.navigateByUrl('/reservation/create-review-pay');
   }
 }

@@ -12,7 +12,7 @@ import {AvatarModule} from 'ngx-avatar';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {NzButtonModule} from 'ng-zorro-antd/button';
 import {EditFieldDirective, ShowFieldDirective} from './directives';
-import {VehicleEditComponent, VehicleShowComponent} from './components';
+import {VehicleEditComponent, VehicleShowComponent, ReservationDetailComponent} from './components';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {DateTimeEditComponent, DateTimeShowComponent} from '@app/@ui';
@@ -21,13 +21,14 @@ import {NzTimePickerModule} from 'ng-zorro-antd/time-picker';
 import {CoreModule} from '../../@core/core.module';
 import {ReservationCreateSpotPage} from './pages/reservation-create-spot/reservation-create-spot.page';
 import {SpotListComponent} from '../../@ui/spot-list/spot-list.component';
+import {ReservationCreateReviewPage} from './pages/reservation-create-review/reservation-create-review.page';
 
 // @ts-ignore
 @NgModule({
   declarations: [
     ReservationListPage, ReservationCreatePage, ReservationIndexPage, ReservationCtaPage, EditFieldDirective,
     VehicleEditComponent, ShowFieldDirective, VehicleShowComponent, DateTimeShowComponent, DateTimeEditComponent,
-    ReservationCreateSpotPage, SpotListComponent
+    ReservationCreateSpotPage, SpotListComponent, ReservationCreateReviewPage, ReservationDetailComponent
   ],
   imports: [
     CommonModule,
