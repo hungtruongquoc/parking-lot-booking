@@ -18,6 +18,9 @@ import {Vehicle} from '../../../../@core/interfaces';
 import {getStatusTextColor, isCheckInDateValid} from '../../../../@core/helpers';
 import {DateTimeEditComponent, DateTimeShowComponent} from '../../../../@ui';
 import {ReservationModel} from '../../../../@core/models/reservation.model';
+import {Store} from '@ngrx/store';
+import {State, updateNewReservationAction} from '../../../../@core/store/Reservation';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: './reservation-create.page.html',
@@ -36,6 +39,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   public errorMessage = null;
   private vehicleFormSubscriptions: Subscription[] = [];
   public isVehicleDateInfoValid = false;
+  public showSpots = false;
 
 
   @ViewChild(EditFieldDirective)
@@ -95,8 +99,8 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     return new ReservationModel(this.FormConfig[0].value, this.FormConfig[1].value, this.FormConfig[2].value);
   }
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private store: Store<State>,
+              private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -308,5 +312,11 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   public get hasCheckOutDate(): boolean {
     return this.FormConfig.some(item => 'checkOutDate' === item.field && 'undefined' !== typeof item.value
       && null !== item.value);
+  }
+
+  public updateNewReservation() {
+    this.showSpots = true;
+    this.store.dispatch(updateNewReservationAction(this.reservationJson));
+    this.router.navigateByUrl('/reservation/create-spot');
   }
 }
