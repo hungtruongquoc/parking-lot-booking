@@ -16,6 +16,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {BrandingComponent} from '@ui/branding/branding.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {StoreModule} from '@ngrx/store';
+import {spotReducerMapper} from '@core/store/Spot';
+import {reducer} from '@core/store/Reservation';
+import {EffectsModule} from '@ngrx/effects';
+import {SpotEffects} from '@core/store/Spot/effects';
+import {SpotService} from '@core/services/spot-service';
 
 // @ts-ignore
 @NgModule({
@@ -31,9 +38,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     }),
     NgbModule,
     FontAwesomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreModule.forRoot({reservation: reducer, spot: spotReducerMapper}),
+    EffectsModule.forRoot([SpotEffects])
   ],
-  providers: [],
+  providers: [
+    SpotService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

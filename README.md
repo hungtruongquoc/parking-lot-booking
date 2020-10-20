@@ -27,10 +27,20 @@ This is a clean, intuitive, and fast starter project which contains a robust, ma
 - PWA (Progressive web app).
 - i18n configuration.
 
-## Arquitecture
+## Architecture
 
 ```
 
 ```
 
 ## Quickstart
+
+## Assets
+
+[FontAwesome Icon 5](https://github.com/FortAwesome/angular-fontawesome/blob/master/docs/usage.md)
+
+## Preferences
+[On Change Library for detect change on an object](https://github.com/sindresorhus/on-change)
+
+[NgRx Store Setup](https://blog.angular-university.io/angular-ngrx-store-and-effects-crash-course/)
+

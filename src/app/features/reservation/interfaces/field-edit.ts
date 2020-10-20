@@ -3,4 +3,6 @@ export interface FieldEdit {
   value?: any;
   cancelClicked?: any;
   submitClicked?: any;
+  dateValue?: Date;
+  timeValue?: Date;
 }

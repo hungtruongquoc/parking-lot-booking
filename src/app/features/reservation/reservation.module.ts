@@ -19,11 +19,15 @@ import {DateTimeEditComponent, DateTimeShowComponent} from '@app/@ui';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 import {NzTimePickerModule} from 'ng-zorro-antd/time-picker';
 import {CoreModule} from '../../@core/core.module';
+import {ReservationCreateSpotPage} from './pages/reservation-create-spot/reservation-create-spot.page';
+import {SpotListComponent} from '../../@ui/spot-list/spot-list.component';
+
 // @ts-ignore
 @NgModule({
   declarations: [
     ReservationListPage, ReservationCreatePage, ReservationIndexPage, ReservationCtaPage, EditFieldDirective,
-    VehicleEditComponent, ShowFieldDirective, VehicleShowComponent, DateTimeShowComponent, DateTimeEditComponent
+    VehicleEditComponent, ShowFieldDirective, VehicleShowComponent, DateTimeShowComponent, DateTimeEditComponent,
+    ReservationCreateSpotPage, SpotListComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,64 @@
+{
+  "spots": [
+    {
+      "rate": 10.00,
+      "id": 100,
+      "available": false
+    },
+    {
+      "rate": 15.00,
+      "id": 101,
+      "available": true
+    },
+    {
+      "rate": 10.00,
+      "id": 102,
+      "available": false
+    },
+    {
+      "rate": 15.00,
+      "id": 103,
+      "available": true
+    },
+    {
+      "rate": 10.00,
+      "id": 104,
+      "available": false
+    },
+    {
+      "rate": 15.00,
+      "id": 105,
+      "available": true
+    },
+    {
+      "rate": 10.00,
+      "id": 106,
+      "available": false
+    },
+    {
+      "rate": 15.00,
+      "id": 107,
+      "available": true
+    },
+    {
+      "rate": 10.00,
+      "id": 108,
+      "available": false
+    },
+    {
+      "rate": 15.00,
+      "id": 109,
+      "available": true
+    },
+    {
+      "rate": 10.00,
+      "id": 110,
+      "available": false
+    },
+    {
+      "rate": 15.00,
+      "id": 111,
+      "available": true
+    }
+  ]
+}

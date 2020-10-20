@@ -4,6 +4,7 @@ import {ReservationListPage} from './pages/reservation-list/reservation-list.pag
 import {ReservationCreatePage} from './pages/reservation-create/reservation-create.page';
 import {ReservationIndexPage} from './pages/reservation-index/reservation-index.page';
 import {ReservationCtaPage} from './pages/reservation-cta/reservation-cta.page';
+import {ReservationCreateSpotPage} from './pages/reservation-create-spot/reservation-create-spot.page';
 
 const routes: Routes = [
   {
@@ -30,6 +31,15 @@ const routes: Routes = [
         data: {
           title: 'Make New Reservation',
           description: 'Create a new reservation',
+          robots: 'follow',
+        }
+      },
+      {
+        path: 'create-spot',
+        component: ReservationCreateSpotPage,
+        data: {
+          title: 'Spot For New Reservation',
+          description: 'Add a spot to a new reservation',
           robots: 'follow',
         }
       },

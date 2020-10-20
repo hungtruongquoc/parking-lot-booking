@@ -20,8 +20,16 @@
         </nz-form-control>
       </nz-form-item>
     </div>
+    <div class="actions d-none d-md-block" style="text-align: right">
+      <button nz-button nzType="default" nzShape="circle" (click)="onCancelClick()">
+        <fa-icon [icon]="iconCancel"></fa-icon>
+      </button>
+      <button nz-button nzType="primary" nzShape="circle">
+        <fa-icon [icon]="iconSubmit"></fa-icon>
+      </button>
+    </div>
   </div>
-  <div class="actions" style="text-align: right">
+  <div class="actions d-md-none" style="text-align: right">
     <button nz-button nzType="default" nzShape="circle" (click)="onCancelClick()">
       <fa-icon [icon]="iconCancel"></fa-icon>
     </button>

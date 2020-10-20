@@ -9,7 +9,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import {faPen, faTimes, faCheck, faTrashAlt, faPlus, faCalendar} from '@fortawesome/pro-light-svg-icons';
-import {faCheckCircle} from '@fortawesome/pro-solid-svg-icons';
+import {faCheckCircle, faExclamationTriangle} from '@fortawesome/pro-solid-svg-icons';
 import {FieldEdit, FormStep} from '../../interfaces';
 import {VehicleEditComponent, VehicleShowComponent} from '../../components';
 import {EditFieldDirective} from '../../directives';
@@ -17,6 +17,10 @@ import {Subscription} from 'rxjs';
 import {Vehicle} from '../../../../@core/interfaces';
 import {getStatusTextColor, isCheckInDateValid} from '../../../../@core/helpers';
 import {DateTimeEditComponent, DateTimeShowComponent} from '../../../../@ui';
+import {ReservationModel} from '../../../../@core/models/reservation.model';
+import {Store} from '@ngrx/store';
+import {State, updateNewReservationAction} from '../../../../@core/store/Reservation';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: './reservation-create.page.html',
@@ -31,8 +35,12 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   public iconDelete = faTrashAlt;
   public iconValid = faCheckCircle;
   public iconCalendar = faCalendar;
-
+  public iconError = faExclamationTriangle;
+  public errorMessage = null;
   private vehicleFormSubscriptions: Subscription[] = [];
+  public isVehicleDateInfoValid = false;
+  public showSpots = false;
+
 
   @ViewChild(EditFieldDirective)
   private editField: EditFieldDirective;
@@ -41,7 +49,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
 
   private doRenderEditComponent = null;
 
-  public formSteps: FormStep[] = [
+  private formSteps: FormStep[] = [
     {
       title: 'Vehicle',
       value: null,
@@ -70,8 +78,29 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     },
   ];
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
+  public get FormConfig() {
+    return this.formSteps;
   }
+
+  // Uses this set to tracking changes to the formSteps array for enabling/disabling the select spot button
+  public set FormConfig(value) {
+    this.formSteps = [...value];
+  }
+
+  public get reservationJson(): object {
+    return {
+      vehicle: this.FormConfig[0].value,
+      checkIn: this.FormConfig[1].value,
+      checkOut: this.FormConfig[2].value
+    };
+  }
+
+  public get reservationObj(): ReservationModel {
+    return new ReservationModel(this.FormConfig[0].value, this.FormConfig[1].value, this.FormConfig[2].value);
+  }
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private store: Store<State>,
+              private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -99,7 +128,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   private getFieldForInjecting(fieldName): { field: FormStep, fieldIndex: number } {
     let fieldIndex = null;
     // Finds the component config for the selected field
-    const field = this.formSteps.find((item, index) => {
+    const field = this.FormConfig.find((item, index) => {
       if (fieldName === item.field && item.showEdit) {
         fieldIndex = index;
         return true;
@@ -110,7 +139,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   private updateVehicleData(vehicle: Vehicle) {
-    this.formSteps = this.formSteps.map(item => {
+    this.FormConfig = this.FormConfig.map(item => {
       const newItem = {...item};
       if ('vehicle' === item.field) {
         newItem.value = {...vehicle};
@@ -120,11 +149,39 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   private isValidCheckInDate(value: Date): boolean {
-    return isCheckInDateValid(value);
+    this.errorMessage = null;
+    let result = isCheckInDateValid(value);
+    if (!result) {
+      this.errorMessage = 'Check In Date has to be in the future.';
+    }
+    if (this.hasCheckOutDate) {
+      const checkOutDate = new Date(this.FormConfig.find(item => 'checkOutDate' === item.field).value * 1000);
+      result = result
+        && this.isValidCheckOutDate(checkOutDate, value);
+    }
+    return result;
+  }
+
+  private isValidCheckOutDate(value: Date, checkInDate: Date = null): boolean {
+    this.errorMessage = null;
+    if (!checkInDate) {
+      const checkInStep = this.FormConfig.find(item => 'checkInDate' === item.field);
+      if (checkInStep && checkInStep.value) {
+        checkInDate = new Date(checkInStep.value * 1000);
+      }
+    }
+    if (checkInDate) {
+      const result = value.getTime() > checkInDate.getTime();
+      if (!result) {
+        this.errorMessage = 'Check Out Date has to be greater than Check In Date';
+      }
+      return result;
+    }
+    return false;
   }
 
   private updateDateTimeInfo(fieldName: string, data: Date): void {
-    this.formSteps = this.formSteps.map(item => {
+    this.FormConfig = this.FormConfig.map(item => {
       const newItem = {...item};
       if (fieldName === item.field) {
         // Converts the time to second for back end
@@ -151,9 +208,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     const {field, fieldIndex} = this.getFieldForInjecting(fieldName);
     const componentRef = this.injectComponentToLocation(field, fieldIndex);
     if (componentRef) {
-      this.vehicleFormSubscriptions.push(componentRef.instance.cancelClicked.subscribe(() => {
-        this.toggleEditStatus(fieldName);
-      }));
+      this.vehicleFormSubscriptions.push(componentRef.instance.cancelClicked.subscribe(this.onCancelClick.bind(this, fieldName)));
       if ('vehicle' === fieldName) {
         componentRef.instance.initialValue = {...field.value};
         this.vehicleFormSubscriptions.push(componentRef.instance.submitClicked.subscribe((data: Vehicle) => {
@@ -162,8 +217,15 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
         }));
       }
       else if (['checkInDate', 'checkOutDate'].includes(fieldName)) {
+        if (field.value) {
+          componentRef.instance.dateValue = new Date(field.value * 1000);
+          componentRef.instance.timeValue = new Date(field.value * 1000);
+        }
         this.vehicleFormSubscriptions.push(componentRef.instance.submitClicked.subscribe((data: Date) => {
           if ('checkInDate' === fieldName && !this.isValidCheckInDate(data)) {
+            return;
+          }
+          else if ('checkOutDate' === fieldName && !this.isValidCheckOutDate(data)) {
             return;
           }
           else {
@@ -180,7 +242,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
 
   private toggleEditStatus(fieldName) {
     let showFieldName = null;
-    this.formSteps = this.formSteps.map(item => {
+    this.FormConfig = this.FormConfig.map(item => {
       const newItem = {...item};
       newItem.showEdit = fieldName === item.field && !item.showEdit;
       if (newItem.showEdit) {
@@ -192,7 +254,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   public deleteVehicleInfo() {
-    this.formSteps = this.formSteps.map(item => {
+    this.FormConfig = this.FormConfig.map(item => {
       const newItem = {...item};
       if ('vehicle' === item.field) {
         newItem.value = null;
@@ -202,7 +264,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   public deleteDateInfo(fieldName: string): void {
-    this.formSteps = this.formSteps.map(item => {
+    this.FormConfig = this.FormConfig.map(item => {
       const newItem = {...item};
       if (fieldName === item.field) {
         newItem.value = null;
@@ -215,8 +277,9 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
     this.toggleEditStatus(step.field);
   }
 
-  public onCancelClick(event, step: FormStep) {
-    this.toggleEditStatus(step.field);
+  public onCancelClick(fieldName) {
+    this.errorMessage = null;
+    this.toggleEditStatus(fieldName);
   }
 
   public isValidStep(step: FormStep): boolean {
@@ -234,7 +297,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   public isPreviousStepValid(fieldName: string): boolean {
-    const step = this.formSteps.find(item => fieldName === item.field);
+    const step = this.FormConfig.find(item => fieldName === item.field);
     return this.isValidStep(step);
   }
 
@@ -243,6 +306,17 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   public get hasEditFieldActive(): boolean {
-    return this.formSteps.some(item => item.showEdit);
+    return this.FormConfig.some(item => item.showEdit);
+  }
+
+  public get hasCheckOutDate(): boolean {
+    return this.FormConfig.some(item => 'checkOutDate' === item.field && 'undefined' !== typeof item.value
+      && null !== item.value);
+  }
+
+  public updateNewReservation() {
+    this.showSpots = true;
+    this.store.dispatch(updateNewReservationAction(this.reservationJson));
+    this.router.navigateByUrl('/reservation/create-spot');
   }
 }
