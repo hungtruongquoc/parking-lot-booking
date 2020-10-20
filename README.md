@@ -1,8 +1,19 @@
+# Parking Spot Booking
+
+## Run The App
+- Clone the `develop` branch of this repo
+- Run `npm install` in the root folder
+- The application needs a mock back-end which can be run locally using following command `npm run mock-api:up`.
+
+## Technology 
+- Angular 10
+- NgRx Store
+
 # Angular Boilerplate
 
 This is a clean, intuitive, and fast starter project which contains a robust, maintainable, scalable, and agile architecture, allowing the developer to focus on the business logic and not on Front-end architecture matters.
 
-## Main features
+## Main features of the Boiler Plate
 
 ### What comes for default
 
@@ -27,12 +38,6 @@ This is a clean, intuitive, and fast starter project which contains a robust, ma
 - PWA (Progressive web app).
 - i18n configuration.
 
-## Architecture
-
-```
-
-```
-
 ## Quickstart
 
 ## Assets
@@ -41,6 +46,5 @@ This is a clean, intuitive, and fast starter project which contains a robust, ma
 
 ## Preferences
 [On Change Library for detect change on an object](https://github.com/sindresorhus/on-change)
-
 [NgRx Store Setup](https://blog.angular-university.io/angular-ngrx-store-and-effects-crash-course/)
 

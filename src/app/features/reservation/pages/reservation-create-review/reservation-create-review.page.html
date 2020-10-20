@@ -1,1 +1,11 @@
-<reservation-detail [reservation]="newReservation$ | async"></reservation-detail>
+<div class="container">
+  <reservation-detail [reservation]="newReservation$ | async"></reservation-detail>
+  <div class="action-buttons">
+    <button nz-button nzShape="round" (click)="showReviewPage()" nzType="primary" nzBlock class="d-md-none">
+      Make a Payment
+    </button>
+    <button nz-button nzShape="round" (click)="showReviewPage()" nzType="primary" class="d-none d-md-block">
+      Make a Payment
+    </button>
+  </div>
+</div>

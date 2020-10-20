@@ -1,67 +1,65 @@
-<div class="container">
-  <h4>Review of the Reservation</h4>
-  <div class="d-none d-md-block">
-    <div class="vehicle-info">
-      <span class="d-block">Vehicle License Plate</span>
-      <h5>{{reservation.vehicle.licensePlate}}</h5>
+<h4>Review of the Reservation</h4>
+<div class="d-none d-md-block">
+  <div class="vehicle-info">
+    <span class="d-block">Vehicle License Plate</span>
+    <h5>{{reservation.vehicle.licensePlate}}</h5>
+  </div>
+  <div class="spot-info">
+    <div class="spot-number">
+      <span class="d-block">Parking Spot</span>
+      <h5>{{reservation.spotId}}</h5>
     </div>
-    <div class="spot-info">
-      <div class="spot-number">
-        <span class="d-block">Parking Spot</span>
-        <h5>{{reservation.spotId}}</h5>
-      </div>
-      <div class="spot-rate">
-        <span class="d-block">Rate (per hour)</span>
-        <h5>{{reservation.rate | currency}}</h5>
-      </div>
-    </div>
-    <div class="duration-section">
-      <span class="d-block">Check In at</span>
-      <h5>{{reservation.checkIn | toLocaleTime}}</h5>
-      <span class="d-block">Check out at</span>
-      <h5>{{reservation.checkOut | toLocaleTime}}</h5>
-    </div>
-    <div class="total-section">
-      <div class="total-hour">
-        <span class="d-block">Total by hours</span>
-        <h5>{{durationByHours}}</h5>
-      </div>
-      <div class="total-amount">
-        <span class="d-block">Total Amount</span>
-        <h5>{{totalAmount | currency}}</h5>
-      </div>
+    <div class="spot-rate">
+      <span class="d-block">Rate (per hour)</span>
+      <h4>{{reservation.rate | currency}}</h4>
     </div>
   </div>
-  <div class="d-md-none">
-    <div class="vehicle-info">
-      <span class="d-block">Vehicle License Plate</span>
-      <h5>{{reservation.vehicle.licensePlate}}</h5>
+  <div class="duration-section">
+    <span class="d-block">Check In at</span>
+    <h5>{{reservation.checkIn | toLocaleTime}}</h5>
+    <span class="d-block">Check out at</span>
+    <h5>{{reservation.checkOut | toLocaleTime}}</h5>
+  </div>
+  <div class="total-section">
+    <div class="total-hour">
+      <span class="d-block">Total by hours</span>
+      <h3>{{durationByHours}}</h3>
     </div>
-    <div class="spot-info d-flex flex-row justify-content-between">
-      <div class="spot-number">
-        <span class="d-block">Parking Spot</span>
-        <h5>{{reservation.spotId}}</h5>
-      </div>
-      <div class="spot-rate">
-        <span class="d-block">Rate (per hour)</span>
-        <h5 class="text-right">{{reservation.rate | currency}}</h5>
-      </div>
+    <div class="total-amount">
+      <span class="d-block">Total Amount</span>
+      <h3>{{totalAmount | currency}}</h3>
     </div>
-    <div class="duration-section">
-      <span class="d-block">Check In at</span>
-      <h5>{{reservation.checkIn | toLocaleTime}}</h5>
-      <span class="d-block">Check out at</span>
-      <h5>{{reservation.checkOut | toLocaleTime}}</h5>
+  </div>
+</div>
+<div class="d-md-none">
+  <div class="vehicle-info">
+    <span class="d-block">Vehicle License Plate</span>
+    <h5>{{reservation.vehicle.licensePlate}}</h5>
+  </div>
+  <div class="spot-info d-flex flex-row justify-content-between">
+    <div class="spot-number">
+      <span class="d-block">Parking Spot</span>
+      <h5>{{reservation.spotId}}</h5>
     </div>
-    <div class="total-section d-flex flex-row justify-content-between">
-      <div class="total-hour">
-        <span class="d-block">Total by hours</span>
-        <h5>{{durationByHours}}</h5>
-      </div>
-      <div class="total-amount">
-        <span class="d-block">Total Amount</span>
-        <h5 class="text-right">{{totalAmount | currency}}</h5>
-      </div>
+    <div class="spot-rate">
+      <span class="d-block">Rate (per hour)</span>
+      <h3 class="text-right">{{reservation.rate | currency}}</h3>
+    </div>
+  </div>
+  <div class="duration-section">
+    <span class="d-block">Check In at</span>
+    <h5>{{reservation.checkIn | toLocaleTime}}</h5>
+    <span class="d-block">Check out at</span>
+    <h5>{{reservation.checkOut | toLocaleTime}}</h5>
+  </div>
+  <div class="total-section d-flex flex-row justify-content-between">
+    <div class="total-hour">
+      <span class="d-block">Total by hours</span>
+      <h3>{{durationByHours}}</h3>
+    </div>
+    <div class="total-amount">
+      <span class="d-block">Total Amount</span>
+      <h3 class="text-right">{{totalAmount | currency}}</h3>
     </div>
   </div>
 </div>
