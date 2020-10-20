@@ -13,13 +13,13 @@ import {faCheckCircle, faExclamationTriangle} from '@fortawesome/pro-solid-svg-i
 import {FieldEdit, FormStep} from '../../interfaces';
 import {VehicleEditComponent, VehicleShowComponent} from '../../components';
 import {EditFieldDirective} from '../../directives';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {Vehicle} from '../../../../@core/interfaces';
 import {getStatusTextColor, isCheckInDateValid} from '../../../../@core/helpers';
 import {DateTimeEditComponent, DateTimeShowComponent} from '../../../../@ui';
 import {ReservationModel} from '../../../../@core/models/reservation.model';
 import {Store} from '@ngrx/store';
-import {State, updateNewReservationAction} from '../../../../@core/store/Reservation';
+import {selectNewReservation, State, updateNewReservationAction} from '../../../../@core/store/Reservation';
 import {Router} from '@angular/router';
 
 @Component({
@@ -40,7 +40,8 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   private vehicleFormSubscriptions: Subscription[] = [];
   public isVehicleDateInfoValid = false;
   public showSpots = false;
-
+  public $newReservation: any;
+  public subscriptions: Subscription[] = [];
 
   @ViewChild(EditFieldDirective)
   private editField: EditFieldDirective;
@@ -100,7 +101,25 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private store: Store<State>,
-              private router: Router) {}
+              private router: Router) {
+    this.$newReservation = store.select(selectNewReservation) as Observable<any>;
+    this.subscriptions.push(this.$newReservation.subscribe(data => {
+      if (data) {
+        this.FormConfig = this.FormConfig.map(item => {
+          if ('vehicle' === item.field) {
+            item.value = {...data.vehicle};
+          }
+          if ('checkInDate' === item.field) {
+            item.value = data.checkIn;
+          }
+          if ('checkOutDate' === item.field) {
+            item.value = data.checkOut;
+          }
+          return item;
+        });
+      }
+    }));
+  }
 
   ngOnInit(): void {
   }
@@ -119,6 +138,14 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
       let currentSubscription: Subscription = null;
       do {
         currentSubscription = this.vehicleFormSubscriptions.pop();
+        currentSubscription.unsubscribe();
+      }
+      while (!currentSubscription);
+    }
+    if (this.subscriptions && this.subscriptions.length > 0) {
+      let currentSubscription: Subscription = null;
+      do {
+        currentSubscription = this.subscriptions.pop();
         currentSubscription.unsubscribe();
       }
       while (!currentSubscription);
@@ -302,6 +329,7 @@ export class ReservationCreatePage implements OnInit, AfterViewChecked, OnDestro
   }
 
   public getStatusTextClass(step) {
+    console.log(getStatusTextColor(this.isValidStep(step)));
     return getStatusTextColor(this.isValidStep(step));
   }
 

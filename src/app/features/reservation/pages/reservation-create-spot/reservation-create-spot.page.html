@@ -1,3 +1,20 @@
 <div class="container">
-  <spot-list [spotSource]="$spots | async" title="Select a Spot"></spot-list>
+  <div class="step-navigation">
+    <a routerLink="/reservation/create" class="btn btn-sm" tabindex="-1" role="button" aria-disabled="true">
+      <fa-icon [icon]="iconBack" ></fa-icon> Vehicle Info
+    </a>
+  </div>
+  <div class="spot-list-section" *ngIf="!newReservation || !newReservation.spotId else showSpot">
+    <h5>Select a Parking Spot</h5>
+    <div class="list-container desktop d-none d-md-block" style="height: 500px; overflow-y: auto">
+      <spot-list [spotSource]="$spots | async" [title]="null" (itemClicked)="updateSelectedSpot($event)"></spot-list>
+    </div>
+    <div class="list-container mobile d-md-none" style="height: 300px; overflow-y: auto">
+      <spot-list [spotSource]="$spots | async" [title]="null" (itemClicked)="updateSelectedSpot($event)"></spot-list>
+    </div>
+  </div>
+  <ng-template #showSpot>
+    <h5>Spot {{newReservation.spotId}} was selected</h5>
+    for vehicle <h5 class="text-uppercase d-inline">{{newReservation.vehicle.licensePlate}}</h5>
+  </ng-template>
 </div>

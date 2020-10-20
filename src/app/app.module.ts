@@ -23,6 +23,7 @@ import {reducer} from '@core/store/Reservation';
 import {EffectsModule} from '@ngrx/effects';
 import {SpotEffects} from '@core/store/Spot/effects';
 import {SpotService} from '@core/services/spot-service';
+import {StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store';
 
 // @ts-ignore
 @NgModule({
@@ -40,8 +41,9 @@ import {SpotService} from '@core/services/spot-service';
     FontAwesomeModule,
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    StoreModule.forRoot({reservation: reducer, spot: spotReducerMapper}),
-    EffectsModule.forRoot([SpotEffects])
+    StoreModule.forRoot({reservation: reducer, spot: spotReducerMapper, router: routerReducer}),
+    EffectsModule.forRoot([SpotEffects]),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [
     SpotService

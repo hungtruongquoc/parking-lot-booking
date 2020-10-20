@@ -1,4 +1,7 @@
 import {Action, createAction, createReducer, on, props} from '@ngrx/store';
+import {Spot} from '@core/store/Spot';
+
+export const UPDATE_NEW_RESERVATION_SPOT = '[Reservation Features] Update Spot';
 
 export interface Reservation {
   licensePlate?: string;
@@ -25,12 +28,21 @@ export const updateNewReservationAction = createAction(
   props<Reservation>()
 );
 
+export const updateNewReservationSpotAction = createAction(
+  UPDATE_NEW_RESERVATION_SPOT,
+  props<Spot>()
+);
+
 export const reservationReducer = createReducer(initialState,
   on(newReservationAction, state => {
     return {...state, newReservation: {}};
   }),
   on(updateNewReservationAction, (state, reservation) => {
     return {...state, newReservation: {...reservation}};
+  }),
+  on(updateNewReservationSpotAction, (state, spot) => {
+    debugger;
+    return {...state, newReservation: {...state.newReservation, spotId: spot.spotId, rate: spot.rate}};
   })
 );
 

@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {GenericHttpService} from '@core/services/generic-http.service';
 import {Spot} from '@core/store/Spot';
 import {environment} from '@environments/environment';
@@ -13,7 +13,10 @@ export class SpotService extends  GenericHttpService<Spot>{
   }
 
   public getAll() {
-    debugger;
     return super.getAll();
+  }
+
+  public getAvailableSpot() {
+    return super.getAll({httpParams: new HttpParams({fromString: 'available=1'})});
   }
 }

@@ -1,47 +1,5 @@
 @import '../../../../../assets/css/01-settings/variables';
 
-.create-form-container {
-  background-color: $white;
-
-  .page-title {
-    padding-bottom: .25em;
-  }
-
+.step-navigation {
   padding-bottom: 1em;
-}
-
-h5 {
-  &.section-title {
-    padding-left: .7em;
-    flex-basis: 100%;
-  }
-}
-
-div {
-  &.section-icon {
-    text-align: center;
-    width: 24px;
-  }
-
-  &.section-container {
-    padding-bottom: 1em;
-  }
-
-  &.vehicle-info.actions {
-    text-align: right;
-    button {
-      margin-left: 1em;
-    }
-  }
-
-  &.check-in-info.action-buttons {
-    text-align: right;
-    button {
-      margin-left: 1em;
-    }
-  }
-
-  &.error-message {
-    margin-bottom: 1em;
-  }
 }

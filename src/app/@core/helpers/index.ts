@@ -1,4 +1,4 @@
-export function getStatusTextColor(isValid = true) {
+export function getStatusTextColor(isValid = false) {
   return {'text-success': isValid, 'text-danger': !isValid};
 }
 
