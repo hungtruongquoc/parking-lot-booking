@@ -15,7 +15,7 @@ import {EditFieldDirective, ShowFieldDirective} from './directives';
 import {VehicleEditComponent, VehicleShowComponent, ReservationDetailComponent} from './components';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzFormModule} from 'ng-zorro-antd/form';
-import {DateTimeEditComponent, DateTimeShowComponent} from '@app/@ui';
+import {DateTimeEditComponent, DateTimeShowComponent, PaymentFormComponent} from '@app/@ui';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 import {NzTimePickerModule} from 'ng-zorro-antd/time-picker';
 import {CoreModule} from '../../@core/core.module';
@@ -28,7 +28,8 @@ import {ReservationCreateReviewPage} from './pages/reservation-create-review/res
   declarations: [
     ReservationListPage, ReservationCreatePage, ReservationIndexPage, ReservationCtaPage, EditFieldDirective,
     VehicleEditComponent, ShowFieldDirective, VehicleShowComponent, DateTimeShowComponent, DateTimeEditComponent,
-    ReservationCreateSpotPage, SpotListComponent, ReservationCreateReviewPage, ReservationDetailComponent
+    ReservationCreateSpotPage, SpotListComponent, ReservationCreateReviewPage, ReservationDetailComponent,
+    PaymentFormComponent
   ],
   imports: [
     CommonModule,

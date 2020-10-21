@@ -3,3 +3,4 @@ export {InternalServerErrorModule} from './_internal-server-error/internal-serve
 export {NotFoundModule} from './_not-found/not-found.module';
 export {DateTimeShowComponent} from './date-time-show/date-time-show.component';
 export {DateTimeEditComponent} from './date-time-edit/date-time-edit.component';
+export {PaymentFormComponent} from './payment-form/payment-form.component';

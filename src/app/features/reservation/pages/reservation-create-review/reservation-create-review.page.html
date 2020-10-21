@@ -1,10 +1,13 @@
 <div class="container">
-  <reservation-detail [reservation]="newReservation$ | async"></reservation-detail>
+  <reservation-detail [reservation]="newReservation$ | async" *ngIf="!showPayment"></reservation-detail>
+  <payment-form *ngIf="showPayment" [amount]="paymentAmount"></payment-form>
   <div class="action-buttons">
-    <button nz-button nzShape="round" (click)="showReviewPage()" nzType="primary" nzBlock class="d-md-none">
+    <button nz-button nzShape="round" (click)="showPaymentForm()" nzType="primary" nzBlock class="d-md-none"
+            *ngIf="!showPayment">
       Make a Payment
     </button>
-    <button nz-button nzShape="round" (click)="showReviewPage()" nzType="primary" class="d-none d-md-block">
+    <button nz-button nzShape="round" (click)="showPaymentForm()" nzType="primary" class="d-none d-md-block"
+            *ngIf="!showPayment">
       Make a Payment
     </button>
   </div>
